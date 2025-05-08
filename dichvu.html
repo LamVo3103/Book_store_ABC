@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dịch Vụ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .service-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .service-container h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #2c3e50;
+      }
+
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: 16px;
+        padding: 25px 30px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .service-card h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: #34495e;
+      }
+
+      .service-card p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .service-container h1 {
+          font-size: 26px;
+        }
+
+        .service-card {
+          padding: 20px;
+        }
+      }
+
+      a{
+        color:black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="service-container">
+      <h1>Dịch Vụ & Thông Tin</h1>
+
+      <div class="service-grid">
+        <div class="service-card">
+          <h2>1. Điều Khoản Sử Dụng</h2>
+          <p>
+            Khi truy cập và sử dụng website của Nhà Sách ABC, khách hàng đồng ý tuân thủ các điều khoản về bản quyền, quyền riêng tư và quy định mua bán. Chúng tôi có quyền thay đổi nội dung mà không cần báo trước.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h2>2. Chính Sách Bảo Mật Thông Tin Cá Nhân</h2>
+          <p>
+            Thông tin khách hàng như họ tên, địa chỉ, số điện thoại và email sẽ được bảo mật tuyệt đối. Chúng tôi cam kết không chia sẻ hoặc bán thông tin này cho bất kỳ bên thứ ba nào nếu không có sự đồng ý của khách hàng.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h2>3. Chính Sách Bảo Mật Thanh Toán</h2>
+          <p>
+            Mọi giao dịch thanh toán qua thẻ tín dụng/ghi nợ và ví điện tử đều được mã hóa qua giao thức SSL. Nhà sách không lưu trữ thông tin thẻ của khách hàng, đảm bảo tính an toàn tối đa khi mua sắm.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h2>4. Giới Thiệu</h2>
+          <p>
+            Nhà Sách ABC là hệ thống nhà sách trực tuyến hàng đầu, cung cấp sách chính hãng đa dạng thể loại. Với sứ mệnh lan tỏa tri thức và khuyến khích thói quen đọc sách, chúng tôi cam kết mang lại trải nghiệm mua sắm văn minh và tiện lợi.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h2>5. Hệ Thống Trung Tâm - Nhà Sách</h2>
+          <p>
+            Chúng tôi có mặt tại các thành phố lớn như TP. Hồ Chí Minh, Hà Nội, Đà Nẵng và Cần Thơ. Mỗi trung tâm đều được trang bị hiện đại, đội ngũ nhân viên chuyên nghiệp, sẵn sàng phục vụ mọi nhu cầu của bạn đọc từ học sinh, sinh viên đến giáo viên và doanh nghiệp.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

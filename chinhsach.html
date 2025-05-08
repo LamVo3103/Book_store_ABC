@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chính Sách Hỗ Trợ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .policy-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .policy-container h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #2c3e50;
+      }
+
+      .policy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .policy-card {
+        background-color: white;
+        border-radius: 16px;
+        padding: 25px 30px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .policy-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .policy-card h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: #34495e;
+      }
+
+      .policy-card ul {
+        padding-left: 20px;
+      }
+
+      .policy-card li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 20px;
+        font-size: 15px;
+      }
+
+      .policy-card li::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        .policy-container h1 {
+          font-size: 26px;
+        }
+
+        .policy-card {
+          padding: 20px;
+        }
+      }
+
+      a{
+        color:black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="policy-container">
+      <h1>Chính Sách Cửa Hàng Sách</h1>
+
+      <div class="policy-grid">
+        <div class="policy-card">
+          <h2>1. Chính Sách Mua Hàng</h2>
+          <ul>
+            <li>Sách chính hãng, nguồn gốc rõ ràng.</li>
+            <li>Đặt hàng qua website hoặc hotline.</li>
+            <li>Thanh toán chuyển khoản, tiền mặt hoặc ví điện tử.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h2>2. Chính Sách Giao Hàng</h2>
+          <ul>
+            <li>Miễn phí vận chuyển cho đơn từ 500.000 VNĐ.</li>
+            <li>Giao hàng 2–5 ngày làm việc tùy khu vực.</li>
+            <li>Khách kiểm tra hàng trước khi thanh toán.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h2>3. Chính Sách Đổi Trả</h2>
+          <ul>
+            <li>Đổi trả trong 7 ngày nếu sản phẩm lỗi.</li>
+            <li>Sách phải còn nguyên vẹn, không ghi chép.</li>
+            <li>Khách chịu phí đổi trả (trừ khi do lỗi từ cửa hàng).</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h2>4. Chính Sách Bảo Mật</h2>
+          <ul>
+            <li>Bảo mật thông tin khách hàng tuyệt đối.</li>
+            <li>Chỉ sử dụng cho giao dịch và giao hàng.</li>
+            <li>Không chia sẻ cho bên thứ ba khi chưa có sự đồng ý.</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h2>5. Thông Tin Liên Hệ</h2>
+          <ul>
+            <li>Email: support@cuahangsach.com</li>
+            <li>Hotline: 0123 456 789 (Thứ 2 - Thứ 7, 8:00 - 17:00)</li>
+            <li>Địa chỉ: 123 Đường Sách, Quận 1, TP.HCM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

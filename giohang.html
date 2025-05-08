@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ Hàng - Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* Thêm style riêng cho trang giỏ hàng */
+      .cart-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #1976d2;
+        padding-bottom: 15px;
+      }
+
+      .cart-title {
+        font-size: 28px;
+        color: #0d47a1;
+      }
+
+      .cart-items {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+
+      .cart-items th {
+        background-color: #1976d2;
+        color: white;
+        padding: 12px;
+        text-align: left;
+      }
+
+      .cart-items td {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        vertical-align: middle;
+      }
+
+      .cart-items tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .cart-items tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .cart-item-img {
+        width: 80px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .cart-item-name {
+        font-weight: bold;
+        color: #1565c0;
+      }
+
+      .cart-item-price {
+        color: #1976d2;
+        font-weight: bold;
+      }
+
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+      }
+
+      .quantity-btn {
+        background-color: #f1f1f1;
+        border: none;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .quantity-input {
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        margin: 0 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .remove-btn {
+        color: #e53935;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .cart-summary {
+        background-color: #e3f2fd;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .summary-total {
+        font-weight: bold;
+        font-size: 20px;
+        color: #0d47a1;
+        border-top: 1px solid #90caf9;
+        padding-top: 15px;
+      }
+
+      .cart-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+
+      .cart-btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .continue-shopping {
+        background-color: #f1f1f1;
+        color: #333;
+      }
+
+      .checkout-btn {
+        background-color: #2ecc71;
+        color: white;
+      }
+
+      .checkout-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .continue-shopping:hover {
+        background-color: #ddd;
+      }
+
+      .empty-cart {
+        text-align: center;
+        padding: 50px;
+        font-size: 20px;
+        color: #666;
+      }
+
+      .empty-cart i {
+        font-size: 50px;
+        color: #90caf9;
+        margin-bottom: 20px;
+      }
+
+      .empty-cart p {
+        margin-bottom: 20px; /* Tạo khoảng cách dưới dòng chữ */
+        font-size: 18px;
+        color: #555;
+      }
+
+      .empty-cart-btn {
+        margin-top: 20px; /* Tạo khoảng cách trên nút */
+        padding: 12px 24px;
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .empty-cart-btn:hover {
+        background-color: #1565c0;
+      }
+
+      @media (max-width: 768px) {
+        .cart-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cart-title {
+          font-size: 22px;
+          margin-bottom: 10px;
+        }
+
+        .cart-items th,
+        .cart-items td {
+          font-size: 14px;
+          padding: 8px;
+        }
+
+        .cart-item-img {
+          width: 60px;
+          height: 80px;
+        }
+
+        .quantity-input {
+          width: 40px;
+        }
+
+        .cart-actions {
+          flex-direction: column;
+          gap: 10px;
+          align-items: stretch;
+        }
+
+        .cart-btn {
+          width: 100%;
+        }
+
+        .footer-container {
+          display: block;
+          width: 95%;
+          padding: 20px;
+        }
+
+        .footer-column-left,
+        .footer-column-right {
+          padding: 10px 0;
+        }
+
+        .mobile-hide {
+          display: none;
+        }
+
+        .mobile-collapsible h3 {
+          cursor: pointer;
+          color: #1976d2;
+          position: relative;
+        }
+
+        .mobile-collapsible h3::after {
+          content: "▼";
+          position: absolute;
+          right: 10px;
+          font-size: 12px;
+          top: 5px;
+        }
+
+        .mobile-collapsible.active .mobile-hide {
+          display: block;
+        }
+
+        .mobile-collapsible.active h3::after {
+          content: "▲";
+        }
+
+        .logo {
+          text-align: center;
+          margin: 10px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER (Giống trang chủ) -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung giỏ hàng -->
+    <div class="cart-container">
+      <div class="cart-header">
+        <h1 class="cart-title">
+          <i class="fas fa-shopping-cart"></i> GIỎ HÀNG CỦA BẠN
+        </h1>
+        <span id="item-count">0 sản phẩm</span>
+      </div>
+
+      <div id="cart-content">
+        <!-- Nội dung giỏ hàng sẽ được thêm bằng JavaScript -->
+        <div class="empty-cart">
+          <i class="fas fa-shopping-basket"></i>
+          <p>Giỏ hàng của bạn đang trống</p>
+          <br />
+          <a href="index.html" class="empty-cart-btn">Tiếp tục mua sắm</a>
+        </div>
+      </div>
+
+      <!-- Phần tổng kết (sẽ hiển thị khi có sản phẩm) -->
+      <div id="cart-summary" style="display: none">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Tạm tính:</span>
+            <span id="subtotal">0 VNĐ</span>
+          </div>
+          <div class="summary-row">
+            <span>Giảm giá:</span>
+            <span id="discount">0 VNĐ</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Tổng cộng:</span>
+            <span id="total">0 VNĐ</span>
+          </div>
+        </div>
+
+        <div class="cart-actions">
+          <a href="index.html" class="cart-btn continue-shopping"
+            ><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a
+          >
+          <a href="thanhtoan.html">
+            <button class="cart-btn checkout-btn">
+              <i class="fas fa-credit-card"></i> THANH TOÁN
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #000000, #f0f0f0);
+        background-image: url("/image.jpg/quangcao.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .illustration {
+        display: none;
+      }
+
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form-box {
+        background: rgba(37, 36, 36, 0.9);
+        padding: 25px;
+        border-radius: 10px;
+        width: 370px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-box h2 {
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      .form-group .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        background: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+
+      /* Style cho phần chọn ngày tháng năm sinh */
+      .birth-date-inputs {
+        display: flex;
+        gap: 10px;
+      }
+
+      .birth-date-inputs select {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        color: #333;
+      }
+
+      .form-group button {
+        width: 100%;
+        padding: 12px;
+        background: #ffd700;
+        border: none;
+        border-radius: 5px;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .form-group button:hover {
+        background: #e6c200;
+      }
+
+      .toggle-link {
+        color: white;
+        text-align: center;
+        margin-top: 10px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .toggle-link:hover {
+        text-decoration: underline;
+      }
+
+      .form-content {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="illustration">
+        <p>(hình minh họa)</p>
+      </div>
+      <div class="form-container">
+        <div class="form-box">
+          <div class="form-content" id="formContent">
+            <h2 id="formTitle">Đăng Nhập</h2>
+            <div class="form-group">
+              <input type="text" id="username" placeholder="Tên đăng nhập" />
+            </div>
+            <div class="form-group" id="passwordGroup">
+              <input type="password" id="password" placeholder="Mật khẩu" />
+              <span class="toggle-password" onclick="togglePassword('password')"
+                >Hiện</span
+              >
+            </div>
+            <!-- Các trường bổ sung chỉ hiển thị khi đăng ký -->
+            <div class="form-group" id="nameGroup" style="display: none">
+              <input type="text" id="fullName" placeholder="Họ và tên" />
+            </div>
+            <div class="form-group" id="emailGroup" style="display: none">
+              <input type="email" id="email" placeholder="Email" />
+            </div>
+            <div class="form-group" id="phoneGroup" style="display: none">
+              <input type="text" id="phone" placeholder="Số điện thoại" />
+            </div>
+            <!-- Trường ngày tháng năm sinh -->
+            <div class="form-group" id="birthDateGroup" style="display: none">
+              <label style="color: white; margin-bottom: 5px; display: block"
+                >Ngày sinh</label
+              >
+              <div class="birth-date-inputs">
+                <select id="birthDay">
+                  <option value="">Ngày</option>
+                  <!-- Tạo các option từ 1 đến 31 -->
+                  <script>
+                    for (let i = 1; i <= 31; i++) {
+                      document.write(`<option value="${i}">${i}</option>`);
+                    }
+                  </script>
+                </select>
+                <select id="birthMonth">
+                  <option value="">Tháng</option>
+                  <!-- Tạo các option từ 1 đến 12 -->
+                  <script>
+                    for (let i = 1; i <= 12; i++) {
+                      document.write(`<option value="${i}">${i}</option>`);
+                    }
+                  </script>
+                </select>
+                <select id="birthYear">
+                  <option value="">Năm</option>
+                  <!-- Tạo các option từ 1900 đến năm hiện tại -->
+                  <script>
+                    const currentYear = new Date().getFullYear();
+                    for (let i = currentYear; i >= 1900; i--) {
+                      document.write(`<option value="${i}">${i}</option>`);
+                    }
+                  </script>
+                </select>
+              </div>
+            </div>
+            <div
+              class="form-group"
+              id="confirmPasswordGroup"
+              style="display: none"
+            >
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Xác nhận mật khẩu"
+              />
+              <span
+                class="toggle-password"
+                onclick="togglePassword('confirmPassword')"
+                >Hiện</span
+              >
+            </div>
+            <div class="form-group">
+              <button id="formButton" onclick="handleAction()">
+                Đăng Nhập
+              </button>
+            </div>
+            <div
+              class="toggle-link"
+              id="link1"
+              onclick="switchForm('register')"
+            >
+              Tạo tài khoản mới
+            </div>
+            <div class="toggle-link" id="link2" onclick="switchForm('forgot')">
+              Quên mật khẩu?
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let currentForm = "login"; // Trạng thái hiện tại: login, register, forgot
+
+      function switchForm(formType) {
+        const formTitle = document.getElementById("formTitle");
+        const formButton = document.getElementById("formButton");
+        const link1 = document.getElementById("link1");
+        const link2 = document.getElementById("link2");
+        const confirmPasswordGroup = document.getElementById(
+          "confirmPasswordGroup"
+        );
+        const nameGroup = document.getElementById("nameGroup");
+        const emailGroup = document.getElementById("emailGroup");
+        const phoneGroup = document.getElementById("phoneGroup");
+        const birthDateGroup = document.getElementById("birthDateGroup");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+        const fullNameInput = document.getElementById("fullName");
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("phone");
+        const birthDayInput = document.getElementById("birthDay");
+        const birthMonthInput = document.getElementById("birthMonth");
+        const birthYearInput = document.getElementById("birthYear");
+
+        // Reset các trường nhập liệu
+        usernameInput.value = "";
+        passwordInput.value = "";
+        confirmPasswordInput.value = "";
+        fullNameInput.value = "";
+        emailInput.value = "";
+        phoneInput.value = "";
+        birthDayInput.value = "";
+        birthMonthInput.value = "";
+        birthYearInput.value = "";
+
+        if (formType === "login") {
+          currentForm = "login";
+          formTitle.textContent = "Đăng Nhập";
+          formButton.textContent = "Đăng Nhập";
+          confirmPasswordGroup.style.display = "none";
+          nameGroup.style.display = "none";
+          emailGroup.style.display = "none";
+          phoneGroup.style.display = "none";
+          birthDateGroup.style.display = "none";
+          link1.textContent = "Tạo tài khoản mới";
+          link1.onclick = () => switchForm("register");
+          link2.textContent = "Quên mật khẩu?";
+          link2.onclick = () => switchForm("forgot");
+          link2.style.display = "block";
+        } else if (formType === "register") {
+          currentForm = "register";
+          formTitle.textContent = "Tạo Tài Khoản";
+          formButton.textContent = "Đăng Ký";
+          confirmPasswordGroup.style.display = "block";
+          nameGroup.style.display = "block";
+          emailGroup.style.display = "block";
+          phoneGroup.style.display = "block";
+          birthDateGroup.style.display = "block";
+          link1.textContent = "Quay lại đăng nhập";
+          link1.onclick = () => switchForm("login");
+          link2.style.display = "none";
+        } else if (formType === "forgot") {
+          currentForm = "forgot";
+          formTitle.textContent = "Đổi Mật Khẩu";
+          formButton.textContent = "Đổi Mật Khẩu";
+          confirmPasswordGroup.style.display = "none";
+          nameGroup.style.display = "none";
+          emailGroup.style.display = "none";
+          phoneGroup.style.display = "none";
+          birthDateGroup.style.display = "none";
+          link1.textContent = "Quay lại đăng nhập";
+          link1.onclick = () => switchForm("login");
+          link2.style.display = "none";
+        }
+
+        // Reset trạng thái hiển thị mật khẩu
+        passwordInput.type = "password";
+        confirmPasswordInput.type = "password";
+        document
+          .querySelectorAll(".toggle-password")
+          .forEach((btn) => (btn.textContent = "Hiện"));
+      }
+
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const toggle = input.nextElementSibling;
+        if (input.type === "password") {
+          input.type = "text";
+          toggle.textContent = "Ẩn";
+        } else {
+          input.type = "password";
+          toggle.textContent = "Hiện";
+        }
+      }
+
+      function handleAction() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const birthDay = document.getElementById("birthDay").value;
+        const birthMonth = document.getElementById("birthMonth").value;
+        const birthYear = document.getElementById("birthYear").value;
+
+        if (currentForm === "login") {
+          if (username && password) {
+            // Lấy danh sách người dùng từ localStorage
+            const users = JSON.parse(localStorage.getItem("users")) || {};
+
+            // Kiểm tra người dùng có tồn tại và mật khẩu đúng không
+            if (users[username] && users[username].password === password) {
+              alert("Đăng nhập thành công với tên: " + username);
+              // Lưu thông tin người dùng hiện tại
+              localStorage.setItem(
+                "currentUser",
+                JSON.stringify(users[username])
+              );
+
+              // Kiểm tra nếu có tham số returnUrl trong URL
+              const urlParams = new URLSearchParams(window.location.search);
+              const returnUrl = urlParams.get("returnUrl");
+
+              // Chuyển hướng về trang trước đó hoặc trang chủ
+              window.location.href = returnUrl || "index.html";
+            } else {
+              alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+            }
+          } else {
+            alert("Vui lòng điền đầy đủ thông tin!");
+          }
+        } else if (currentForm === "register") {
+          if (
+            username &&
+            password &&
+            confirmPassword &&
+            fullName &&
+            email &&
+            phone &&
+            birthDay &&
+            birthMonth &&
+            birthYear
+          ) {
+            if (password === confirmPassword) {
+              // Lấy danh sách người dùng từ localStorage
+              const users = JSON.parse(localStorage.getItem("users")) || {};
+
+              // Kiểm tra username đã tồn tại chưa
+              if (users[username]) {
+                alert("Tên đăng nhập đã tồn tại!");
+                return;
+              }
+
+              // Tạo user mới
+              users[username] = {
+                username: username,
+                password: password,
+                name: fullName,
+                email: email,
+                phone: phone,
+                birthDate: `${birthDay}/${birthMonth}/${birthYear}`,
+                gender: "Nam",
+                avatar: "https://via.placeholder.com/50",
+              };
+
+              // Lưu danh sách người dùng
+              localStorage.setItem("users", JSON.stringify(users));
+              alert("Đăng ký thành công với tên: " + username);
+              switchForm("login");
+            } else {
+              alert("Mật khẩu xác nhận không khớp!");
+            }
+          } else {
+            alert("Vui lòng điền đầy đủ thông tin!");
+          }
+        } else if (currentForm === "forgot") {
+          if (username && password) {
+            const users = JSON.parse(localStorage.getItem("users")) || {};
+            if (users[username]) {
+              users[username].password = password;
+              localStorage.setItem("users", JSON.stringify(users));
+              alert("Đổi mật khẩu thành công cho: " + username);
+              switchForm("login");
+            } else {
+              alert("Tên đăng nhập không tồn tại!");
+            }
+          } else {
+            alert("Vui lòng điền đầy đủ thông tin!");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

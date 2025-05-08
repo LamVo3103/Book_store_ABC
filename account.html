@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Tài Khoản</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f8f4f0; /* Màu nền ấm áp hơn */
+        color: #2c3e50;
+        line-height: 1.6;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      /* Header mềm mại hơn */
+
+      /* Content Wrapper */
+      .content-wrapper {
+        display: flex;
+        gap: 30px;
+        margin: 30px auto;
+        align-items: flex-start;
+      }
+
+      /* Sidebar mềm mại */
+      .sidebar {
+        width: 280px;
+        background: #fff;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 100px;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+      }
+
+      .user-icon {
+        font-size: 40px;
+        color: #3498db;
+        background: #e3f2fd;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .username {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      .menu {
+        list-style: none;
+        flex-grow: 1;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+
+      .menu-item a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        width: 100%;
+      }
+
+      .menu-item i {
+        margin-right: 12px;
+        font-size: 18px;
+        color: #7f8c8d;
+        transition: all 0.3s ease;
+      }
+
+      .menu-item:hover {
+        background: rgba(52, 152, 219, 0.1);
+        color: #3498db;
+      }
+
+      .menu-item:hover i {
+        color: #3498db;
+        transform: scale(1.1);
+      }
+
+      .menu-item.active {
+        background: #3498db;
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+      }
+
+      .menu-item.active i {
+        color: white;
+      }
+
+      .logout {
+        color: #e74c3c;
+      }
+
+      .logout:hover {
+        background: rgba(231, 76, 60, 0.1);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        background: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .profile-header {
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        text-align: center;
+      }
+
+      .profile-header h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .profile-header p {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      .profile-container {
+        flex-grow: 1;
+      }
+
+      .profile-form {
+        max-width: 700px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 12px 15px;
+        font-size: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        background: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      }
+
+      .form-group input[readonly] {
+        background: #f5f5f5;
+        cursor: not-allowed;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        padding: 10px 0;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 400;
+        color: #2c3e50;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      .radio-group input {
+        margin-right: 8px;
+        accent-color: #3498db;
+      }
+
+      .save-btn {
+        grid-column: span 2;
+        background: #3498db;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+      }
+
+      .save-btn:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+      }
+
+      .save-btn:active {
+        transform: translateY(0);
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .content-wrapper {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          position: static;
+          margin-bottom: 30px;
+        }
+
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .save-btn {
+          grid-column: span 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container content-wrapper">
+      <aside class="sidebar">
+        <div class="user-info">
+          <div class="user-icon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <span class="username">Username</span>
+        </div>
+        <ul class="menu">
+          <li class="menu-item active">
+            <i class="fas fa-user"></i> Thông Tin
+          </li>
+          <li class="menu-item">
+            <i class="fas fa-address-book"></i> Tài Khoản Của Tôi
+          </li>
+          <li class="menu-item">
+            <a
+              href="https://www.google.com/maps/@9.779349,105.6189045,11z?hl=vi-VN"
+            >
+              <i class="fas fa-map-marker-alt"></i> Địa Chỉ
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="giohang.html">
+              <i class="fas fa-shopping-cart"></i> Giỏ Hàng
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="chinhsach.html">
+              <i class="fas fa-bell"></i> Chính sách
+            </a>
+          </li>
+          <li class="menu-item logout">
+            <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+          </li>
+        </ul>
+      </aside>
+      <main class="main-content">
+        <header class="profile-header">
+          <h2>Hồ Sơ Của Tôi</h2>
+        </header>
+        <div class="profile-container">
+          <div class="profile-form">
+            <form>
+              <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" value="Username" readonly />
+              </div>
+              <div class="form-group">
+                <label for="name">Họ và Tên</label>
+                <input type="text" id="name" value="Tên Người Dùng" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" value="email@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" value="0123456789" />
+              </div>
+              <div class="form-group">
+                <label for="birthDate">Ngày sinh</label>
+                <input type="date" id="birthDate" value="2000-01-01" />
+              </div>
+              <div class="form-group">
+                <label>Giới tính</label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="gender" value="Nam" checked />
+                    Nam
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="Nữ" />
+                    Nữ
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="Khác" />
+                    Khác
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="save-btn">Lưu thay đổi</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Kiểm tra xem người dùng đã đăng nhập chưa
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+          // Lưu URL hiện tại để quay lại sau khi đăng nhập
+          localStorage.setItem("returnUrl", window.location.href);
+          alert("Vui lòng đăng nhập để truy cập trang này!");
+          window.location.href =
+            "login.html?returnUrl=" + encodeURIComponent(window.location.href);
+          return;
+        }
+
+        // Hiển thị thông tin người dùng
+        document.querySelector(".username").textContent = currentUser.username;
+        document.querySelector("#username").value = currentUser.username;
+        document.querySelector("#name").value = currentUser.name || "";
+        document.querySelector("#email").value = currentUser.email || "";
+        document.querySelector("#phone").value = currentUser.phone || "";
+
+        // Chuyển đổi định dạng ngày sinh nếu cần
+        if (currentUser.birthDate) {
+          const [day, month, year] = currentUser.birthDate.split("/");
+          const formattedDate = `${year}-${month.padStart(
+            2,
+            "0"
+          )}-${day.padStart(2, "0")}`;
+          document.querySelector("#birthDate").value = formattedDate;
+        }
+
+        document.querySelector(
+          `input[name="gender"][value="${currentUser.gender || "Nam"}"]`
+        ).checked = true;
+
+        // Hiệu ứng cho các nút trong menu
+        const menuItems = document.querySelectorAll(".menu-item");
+        menuItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            menuItems.forEach((i) => i.classList.remove("active"));
+            item.classList.add("active");
+          });
+        });
+
+        // Hiệu ứng cho nút đăng xuất
+        const logoutBtn = document.querySelector(".logout");
+        logoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          // Xóa thông tin người dùng khỏi localStorage
+          localStorage.removeItem("currentUser");
+          alert("Bạn đã đăng xuất!");
+          // Chuyển hướng về trang đăng nhập
+          window.location.href = "login.html";
+        });
+
+        // Lưu thông tin khi người dùng chỉnh sửa và nhấn nút "Lưu"
+        const form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const updatedUser = {
+            username: currentUser.username,
+            name: document.querySelector("#name").value,
+            email: document.querySelector("#email").value,
+            phone: document.querySelector("#phone").value,
+            birthDate: document.querySelector("#birthDate").value,
+            gender: document.querySelector('input[name="gender"]:checked')
+              .value,
+            avatar: currentUser.avatar || "https://via.placeholder.com/50",
+          };
+          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+          alert("Thông tin đã được cập nhật!");
+        });
+
+        // Kiểm tra trạng thái đăng nhập để hiển thị user dropdown
+        const loginLink = document.getElementById("loginLink");
+        const userDropdown = document.getElementById("userDropdown");
+
+        if (currentUser) {
+          if (loginLink) loginLink.style.display = "none";
+          if (userDropdown) userDropdown.style.display = "block";
+
+          // Cập nhật avatar nếu có
+          const userAvatar = document.getElementById("userAvatar");
+          if (userAvatar && currentUser.avatar) {
+            userAvatar.src = currentUser.avatar;
+          }
+        } else {
+          if (loginLink) loginLink.style.display = "inline-block";
+          if (userDropdown) userDropdown.style.display = "none";
+        }
+
+        // Xử lý đăng xuất từ dropdown
+        const logoutLink = document.getElementById("logoutLink");
+        if (logoutLink) {
+          logoutLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem("currentUser");
+            window.location.href = "login.html";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

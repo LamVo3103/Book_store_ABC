@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tất Cả Sản Phẩm | Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Sidebar Left -->
+      <aside class="sidebar-left">
+        <h2><i class="fas fa-list"></i> DANH MỤC SÁCH</h2>
+        <ul class="category-list">
+          <li>
+            <a href="#vanhoc"
+              ><i class="fas fa-book-open"></i> Văn Học
+              <span class="item-count">(128)</span></a
+            >
+          </li>
+          <li>
+            <a href="#kinhdoanh"
+              ><i class="fas fa-chart-line"></i> Kinh Tế
+              <span class="item-count">(76)</span></a
+            >
+          </li>
+          <li>
+            <a href="#kynang"
+              ><i class="fas fa-brain"></i> Kỹ Năng
+              <span class="item-count">(53)</span></a
+            >
+          </li>
+          <li>
+            <a href="#thieunhi"
+              ><i class="fas fa-child"></i> Thiếu Nhi
+              <span class="item-count">(92)</span></a
+            >
+          </li>
+          <li>
+            <a href="#giaokhoa"
+              ><i class="fas fa-graduation-cap"></i> Giáo Khoa
+              <span class="item-count">(45)</span></a
+            >
+          </li>
+          <li>
+            <a href="#ngoaingu"
+              ><i class="fas fa-language"></i> Ngoại Ngữ
+              <span class="item-count">(67)</span></a
+            >
+          </li>
+        </ul>
+
+        <!-- Best Sellers -->
+        <section class="best-sellers">
+          <h2><i class="fas fa-crown"></i> TOP BÁN CHẠY</h2>
+
+          <div class="top-book">
+            <a href="sanpham.html?product=dac-nhan-tam" class="product-link">
+              <img src="img/dac-nhan-tam.jpg" alt="Đắc Nhân Tâm" />
+              <div class="top-book-info">
+                <h3>Đắc Nhân Tâm</h3>
+                <div class="rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="price">75.000đ</p>
+              </div>
+            </a>
+          </div>
+          <div class="top-book">
+            <a href="sanpham.html?product=nha-gia-kim" class="product-link">
+              <img src="img/nha-gia-kim.jpg" alt="Nhà Giả Kim" />
+              <div class="top-book-info">
+                <h3>Nhà Giả Kim</h3>
+                <div class="rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="price">68.000đ</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+          <h2><i class="fas fa-envelope"></i> NHẬN KHUYẾN MÃI</h2>
+          <p>Đăng ký nhận ưu đãi độc quyền</p>
+          <form id="newsletter-form">
+            <input type="email" placeholder="Email của bạn" required />
+            <button type="submit">
+              Đăng ký <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </section>
+      </aside>
+
+      <!-- Main Product Area -->
+      <main class="product-area">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="index.html">Trang chủ</a> &gt; 
+          <span>Tất cả sản phẩm</span>
+        </div>
+
+        <!-- Văn học -->
+        <section class="product-section" id="vanhoc">
+          <h2><i class="fas fa-book-open"></i> Văn Học</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=dac-nhan-tam" class="product-link">
+                <img src="img/dac-nhan-tam.jpg" alt="Đắc Nhân Tâm" />
+              </a>
+              <p class="product-title">Đắc Nhân Tâm</p>
+              <p class="product-price">75.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=nha-gia-kim" class="product-link">
+                <img src="img/nha-gia-kim.jpg" alt="Nhà Giả Kim" />
+              </a>
+              <p class="product-title">Nhà Giả Kim</p>
+              <p class="product-price">68.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=tuoi-tre-dang-gia-bao-nhieu" class="product-link">
+                <img src="img/tuoi-tre-dang-gia-bao-nhieu.jpg" alt="Tuổi Trẻ Đáng Giá Bao Nhiêu" />
+              </a>
+              <p class="product-title">Tuổi Trẻ Đáng Giá Bao Nhiêu</p>
+              <p class="product-price">89.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=ca-phe-cung-tony" class="product-link">
+                <img src="img/ca-phe-cung-tony.jpg" alt="Cà Phê Cùng Tony" />
+              </a>
+              <p class="product-title">Cà Phê Cùng Tony</p>
+              <p class="product-price">65.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Kinh doanh -->
+        <section class="product-section" id="kinhdoanh">
+          <h2><i class="fas fa-chart-line"></i> Kinh Doanh</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=day-con-lam-giau" class="product-link">
+                <img src="img/day-con-lam-giau.jpg" alt="Dạy Con Làm Giàu" />
+              </a>
+              <p class="product-title">Dạy Con Làm Giàu</p>
+              <p class="product-price">95.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=tu-duy-nhanh-va-cham" class="product-link">
+                <img src="img/tu-duy-nhanh-va-cham.jpg" alt="Tư Duy Nhanh Và Chậm" />
+              </a>
+              <p class="product-title">Tư Duy Nhanh Và Chậm</p>
+              <p class="product-price">120.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=bi-mat-tu-duy-trieu-phu" class="product-link">
+                <img src="img/bi-mat-tu-duy-trieu-phu.jpg" alt="Bí Mật Tư Duy Triệu Phú" />
+              </a>
+              <p class="product-title">Bí Mật Tư Duy Triệu Phú</p>
+              <p class="product-price">85.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=kinh-dien-ve-khoi-nghiep" class="product-link">
+                <img src="img/kinh-dien-ve-khoi-nghiep.jpg" alt="Kinh Điển Về Khởi Nghiệp" />
+              </a>
+              <p class="product-title">Kinh Điển Về Khởi Nghiệp</p>
+              <p class="product-price">110.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            
+          </div>
+        </section>
+
+        <!-- Kỹ năng -->
+        <section class="product-section" id="kynang">
+          <h2><i class="fas fa-brain"></i> Kỹ Năng</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=7-thoi-quen-hieu-qua" class="product-link">
+                <img src="img/7-thoi-quen-hieu-qua.jpg" alt="7 Thói Quen Hiệu Quả" />
+              </a>
+              <p class="product-title">7 Thói Quen Hiệu Quả</p>
+              <p class="product-price">105.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=doc-vi-bat-ky-ai" class="product-link">
+                <img src="img/doc-vi-bat-ky-ai.jpg" alt="Đọc Vị Bất Kỳ Ai" />
+              </a>
+              <p class="product-title">Đọc Vị Bất Kỳ Ai</p>
+              <p class="product-price">78.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=nghe-thuat-giao-tiep" class="product-link">
+                <img src="img/nghe-thuat-giao-tiep.jpg" alt="Nghệ Thuật Giao Tiếp" />
+              </a>
+              <p class="product-title">Nghệ Thuật Giao Tiếp</p>
+              <p class="product-price">65.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=lam-chu-tu-duy-thay-doi-van-menh" class="product-link">
+                <img src="img/lam-chu-tu-duy-thay-doi-van-menh.jpg" alt="Làm Chủ Tư Duy Thay Đổi Vận Mệnh" />
+              </a>
+              <p class="product-title">Làm Chủ Tư Duy Thay Đổi Vận Mệnh</p>
+              <p class="product-price">115.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            
+          </div>
+        </section>
+
+        <!-- Thiếu nhi -->
+        <section class="product-section" id="thieunhi">
+          <h2><i class="fas fa-child"></i> Thiếu Nhi</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=doraemon" class="product-link">
+                <img src="img/doraemon.jpg" alt="Doraemon" />
+              </a>
+              <p class="product-title">Truyện Tranh Doraemon</p>
+              <p class="product-price">25.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=than-dong-dat-viet" class="product-link">
+                <img src="img/than-dong-dat-viet.jpg" alt="Thần Đồng Đất Việt" />
+              </a>
+              <p class="product-title">Thần Đồng Đất Việt</p>
+              <p class="product-price">30.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=harrypotter" class="product-link">
+                <img src="img/harrypotter.jpg" alt="Harry Potter" />
+              </a>
+              <p class="product-title">Harry Potter (Tập 1)</p>
+              <p class="product-price">120.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=tam-cam" class="product-link">
+                <img src="img/tam-cam.jpg" alt="Tấm Cám" />
+              </a>
+              <p class="product-title">Truyện Cổ Tích: Tấm Cám</p>
+              <p class="product-price">35.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            
+          </div>
+        </section>
+
+        <!-- Giáo khoa -->
+        <section class="product-section" id="giaokhoa">
+          <h2><i class="fas fa-graduation-cap"></i> Giáo Khoa</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=toan-lop-1" class="product-link">
+                <img src="img/toan-lop-1.jpg" alt="Toán Lớp 1" />
+              </a>
+              <p class="product-title">Toán Lớp 1</p>
+              <p class="product-price">25.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=tieng-viet-lop-2" class="product-link">
+                <img src="img/tieng-viet-lop-2.jpg" alt="Tiếng Việt Lớp 2" />
+              </a>
+              <p class="product-title">Tiếng Việt Lớp 2</p>
+              <p class="product-price">30.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=vat-li-lop-10" class="product-link">
+                <img src="img/vat-li-lop-10.jpg" alt="Vật Lý Lớp 10" />
+              </a>
+              <p class="product-title">Vật Lý Lớp 10</p>
+              <p class="product-price">45.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=hoa-hoc-lop-11" class="product-link">
+                <img src="img/hoa-hoc-lop-11.jpg" alt="Hóa Học Lớp 11" />
+              </a>
+              <p class="product-title">Hóa Học Lớp 11</p>
+              <p class="product-price">50.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            
+          </div>
+        </section>
+
+        <!-- Ngoại ngữ -->
+        <section class="product-section" id="ngoaingu">
+          <h2><i class="fas fa-language"></i> Ngoại Ngữ</h2>
+          <div class="product-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=english" class="product-link">
+                <img src="img/english.jpg" alt="English Grammar In Use" />
+              </a>
+              <p class="product-title">English Grammar In Use</p>
+              <p class="product-price">150.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=japanese" class="product-link">
+                <img src="img/japanese.jpg" alt="Tự Học Tiếng Nhật" />
+              </a>
+              <p class="product-title">Tự Học Tiếng Nhật</p>
+              <p class="product-price">120.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=korean" class="product-link">
+                <img src="img/korean.png" alt="Tiếng Hàn Tổng Hợp" />
+              </a>
+              <p class="product-title">Tiếng Hàn Tổng Hợp</p>
+              <p class="product-price">110.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Sản phẩm 5 -->
+            <div class="product-card">
+              <a href="sanpham.html?product=ielts" class="product-link">
+                <img src="img/ielts.png" alt="IELTS Speaking" />
+              </a>
+              <p class="product-title">IELTS Speaking Band 9</p>
+              <p class="product-price">180.000đ</p>
+              <button class="add-to-cart-button">Thêm vào giỏ</button>
+            </div>
+
+            
+        </section>
+      </main>
+
+      <!-- Sidebar Right -->
+      <aside class="sidebar-right">
+        <div class="cart-summary-box">
+          <h2><i class="fas fa-shopping-cart"></i> GIỎ HÀNG</h2>
+          <div class="cart-info">
+            <div class="cart-summary">
+              <span>Số lượng:</span>
+              <span class="cart-count">0</span> sản phẩm
+            </div>
+            <div class="cart-summary">
+              <span>Tổng tiền:</span>
+              <span class="cart-total">0</span>
+            </div>
+            <a href="giohang.html" class="view-cart-button">Xem giỏ hàng</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <button onclick="scrollToTop()" id="toTopBtn">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html> 

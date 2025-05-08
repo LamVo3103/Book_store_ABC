@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Toán - Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .checkout-container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+        display: flex;
+        gap: 30px;
+      }
+
+      .checkout-form {
+        flex: 2;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .order-summary {
+        flex: 1;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        align-self: flex-start;
+      }
+
+      .section-title {
+        font-size: 22px;
+        color: #0d47a1;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e3f2fd;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .payment-methods {
+        margin-top: 30px;
+      }
+
+      .payment-option {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .payment-option:hover {
+        border-color: #1976d2;
+        background-color: #f5f9ff;
+      }
+
+      .payment-option input {
+        margin-right: 15px;
+      }
+
+      .payment-icon {
+        font-size: 24px;
+        margin-right: 15px;
+        width: 40px;
+        text-align: center;
+      }
+
+      .payment-info h4 {
+        margin: 0 0 5px 0;
+        color: #0d47a1;
+      }
+
+      .payment-info p {
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .order-items {
+        margin-bottom: 20px;
+      }
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #eee;
+      }
+
+      .order-total {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0d47a1;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 2px solid #e3f2fd;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .submit-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .bank-info {
+        display: none;
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        border-left: 4px solid #1976d2;
+      }
+
+      .bank-info p {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+
+      .bank-info strong {
+        color: #0d47a1;
+      }
+
+      @media (max-width: 768px) {
+        .checkout-container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER (Giống các trang khác) -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung thanh toán -->
+    <div class="checkout-container">
+      <div class="checkout-form">
+        <h2 class="section-title">Thông tin thanh toán</h2>
+
+        <div class="form-group">
+          <label for="fullname">Họ và tên</label>
+          <input type="text" id="fullname" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="tel" id="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Địa chỉ nhận hàng</label>
+          <textarea id="address" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="note">Ghi chú (nếu có)</label>
+          <textarea id="note" rows="2"></textarea>
+        </div>
+
+        <div class="payment-methods">
+          <h2 class="section-title">Phương thức thanh toán</h2>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cod" checked />
+            <div class="payment-icon">
+              <i class="fas fa-money-bill-wave" style="color: #4caf50"></i>
+            </div>
+            <div class="payment-info">
+              <h4>Thanh toán khi nhận hàng (COD)</h4>
+              <p>Bạn chỉ thanh toán khi đã nhận được hàng</p>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="bank" />
+            <div class="payment-icon">
+              <i class="fas fa-university" style="color: #2196f3"></i>
+            </div>
+            <div class="payment-info">
+              <h4>Chuyển khoản ngân hàng</h4>
+              <p>Chuyển khoản trước khi giao hàng</p>
+            </div>
+          </label>
+          <div id="bank-info" class="bank-info">
+            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+            <p><strong>Số tài khoản:</strong> 123456789</p>
+            <p><strong>Chủ tài khoản:</strong> NHA SACH ABC</p>
+            <p><strong>Chi nhánh:</strong> Hà Nội</p>
+            <p><strong>Nội dung chuyển khoản:</strong> Tên_SĐT</p>
+          </div>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="momo" />
+            <div class="payment-icon">
+              <i class="fas fa-mobile-alt" style="color: #9c27b0"></i>
+            </div>
+            <div class="payment-info">
+              <h4>Ví điện tử MoMo</h4>
+              <p>Quét QR code để thanh toán</p>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="zalopay" />
+            <div class="payment-icon">
+              <i class="fas fa-wallet" style="color: #03a9f4"></i>
+            </div>
+            <div class="payment-info">
+              <h4>ZaloPay</h4>
+              <p>Thanh toán qua ứng dụng ZaloPay</p>
+            </div>
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn" onclick="submitOrder()">
+          HOÀN TẤT ĐƠN HÀNG
+        </button>
+      </div>
+
+      <div class="order-summary">
+        <h2 class="section-title">Đơn hàng của bạn</h2>
+
+        <div class="order-items" id="order-items">
+          <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
+        </div>
+
+        <div class="order-total">
+          <span>Tổng cộng:</span>
+          <span id="order-total">0đ</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Lấy dữ liệu giỏ hàng từ localStorage
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const shippingFee = 20000; // Phí vận chuyển
+
+      // Hiển thị sản phẩm trong đơn hàng
+      function displayOrderSummary() {
+        const orderItemsEl = document.getElementById("order-items");
+        let subtotal = 0;
+
+        // Xóa nội dung cũ
+        orderItemsEl.innerHTML = "";
+
+        if (cart.length === 0) {
+          orderItemsEl.innerHTML =
+            "<p>Không có sản phẩm nào trong giỏ hàng</p>";
+          document.getElementById("order-total").textContent = "0đ";
+          return;
+        }
+
+        // Thêm từng sản phẩm vào đơn hàng
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+
+          const itemEl = document.createElement("div");
+          itemEl.className = "order-item";
+          itemEl.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>${itemTotal.toLocaleString("vi-VN")}đ</span>
+                `;
+          orderItemsEl.appendChild(itemEl);
+        });
+
+        // Thêm phí vận chuyển
+        const shippingEl = document.createElement("div");
+        shippingEl.className = "order-item";
+        shippingEl.innerHTML = `
+                <span>Phí vận chuyển</span>
+                <span>${shippingFee.toLocaleString("vi-VN")}đ</span>
+            `;
+        orderItemsEl.appendChild(shippingEl);
+
+        // Tính tổng cộng
+        const total = subtotal + shippingFee;
+        document.getElementById(
+          "order-total"
+        ).textContent = `${total.toLocaleString("vi-VN")}đ`;
+      }
+
+      // Hiển thị thông tin ngân hàng khi chọn phương thức chuyển khoản
+      document.querySelectorAll('input[name="payment"]').forEach((radio) => {
+        radio.addEventListener("change", function () {
+          const bankInfo = document.getElementById("bank-info");
+          if (this.value === "bank") {
+            bankInfo.style.display = "block";
+          } else {
+            bankInfo.style.display = "none";
+          }
+        });
+      });
+
+      // Xử lý khi nhấn nút hoàn tất đơn hàng
+      document
+        .querySelector(".submit-btn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+
+          if (cart.length === 0) {
+            alert("Giỏ hàng của bạn đang trống!");
+            return;
+          }
+
+          // Kiểm tra thông tin bắt buộc
+          const fullname = document.getElementById("fullname").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const address = document.getElementById("address").value;
+
+          if (!fullname || !email || !phone || !address) {
+            alert("Vui lòng điền đầy đủ thông tin bắt buộc");
+            return;
+          }
+
+          // Lấy phương thức thanh toán đã chọn
+          const paymentMethod = document.querySelector(
+            'input[name="payment"]:checked'
+          ).value;
+          let paymentMethodName = "";
+
+          switch (paymentMethod) {
+            case "cod":
+              paymentMethodName = "Thanh toán khi nhận hàng (COD)";
+              break;
+            case "bank":
+              paymentMethodName = "Chuyển khoản ngân hàng";
+              break;
+            case "momo":
+              paymentMethodName = "Ví điện tử MoMo";
+              break;
+            case "zalopay":
+              paymentMethodName = "ZaloPay";
+              break;
+          }
+
+          // Tạo đơn hàng
+          const order = {
+            customer: { fullname, email, phone, address },
+            items: cart,
+            paymentMethod,
+            total: calculateTotal(),
+            date: new Date().toISOString(),
+          };
+
+          // Lưu đơn hàng vào localStorage (có thể gửi lên server trong thực tế)
+          saveOrder(order);
+
+          // Xóa giỏ hàng
+          localStorage.removeItem("cart");
+
+          // Hiển thị thông báo thành công
+          alert(
+            `Đơn hàng của bạn đã được đặt thành công!\nPhương thức thanh toán: ${paymentMethodName}`
+          );
+
+          // Chuyển hướng về trang chủ
+          window.location.href = "index.html";
+        });
+
+      // Tính tổng tiền
+      function calculateTotal() {
+        const subtotal = cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+        return subtotal + shippingFee;
+      }
+
+      // Lưu đơn hàng (trong thực tế nên gửi lên server)
+      function saveOrder(order) {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+      }
+
+      // Khởi tạo khi trang được tải
+      document.addEventListener("DOMContentLoaded", displayOrderSummary);
+
+      const order = {
+        customer: { fullname, email, phone, address },
+        items: [...cart], // Sao chép giỏ hàng hiện tại
+        paymentMethod,
+        total: calculateTotal(),
+        date: new Date().toISOString(),
+        status: "pending", // Thêm trạng thái ban đầu
+      };
+    </script>
+  </body>
+</html>

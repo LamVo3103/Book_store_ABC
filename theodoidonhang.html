@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theo Dõi Đơn Hàng - Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .all-orders-title {
+        color: #1976d2;
+        margin: 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e3f2fd;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER (Giống các trang khác) -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung theo dõi đơn hàng -->
+    <div class="order-tracking-container">
+      <h1 class="all-orders-title">
+        <i class="fas fa-clipboard-list"></i> Tất cả đơn hàng của bạn
+      </h1>
+
+      <div id="orders-list">
+        <!-- Các đơn hàng sẽ được thêm vào đây bằng JavaScript -->
+      </div>
+
+      <!-- Mẫu hiển thị đơn hàng (sẽ được thêm bằng JavaScript) -->
+      <div class="order-template" style="display: none">
+        <div class="order-card">
+          <div class="order-header">
+            <h3>Mã đơn hàng: <span class="order-id">#103663997</span></h3>
+            <span class="status-btn">Đang xác nhận</span>
+          </div>
+
+          <div class="order-status-box">
+            <span class="status-item active">Đang xác nhận</span>
+            <i class="fas fa-ellipsis-h status-divider"></i>
+            <span class="status-item">Đang xử lý</span>
+            <i class="fas fa-ellipsis-h status-divider"></i>
+            <span class="status-item">Đang giao hàng</span>
+            <i class="fas fa-ellipsis-h status-divider"></i>
+            <span class="status-item">Hoàn tất</span>
+          </div>
+
+          <div class="shipping-info">
+            <p><strong>Thông tin vận chuyển</strong></p>
+            <p class="info-detail">Nhà Sách ABC đang xác nhận đơn hàng</p>
+            <p class="date-time">22/04/2025 - 16:18</p>
+          </div>
+
+          <div class="delivery-estimate">
+            Ngày dự kiến giao hàng: <strong>23/04/2025</strong>
+          </div>
+
+          <div class="order-items">
+            <h4>Chi tiết đơn hàng:</h4>
+            <table class="order-items-table">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Giá</th>
+                  <th>Số lượng</th>
+                  <th>Tạm tính</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="order-summary">
+            <div class="summary-row">
+              <span>Tạm tính:</span>
+              <span class="subtotal">150.000đ</span>
+            </div>
+            <div class="summary-row">
+              <span>Phí vận chuyển:</span>
+              <span class="shipping-fee">20.000đ</span>
+            </div>
+            <div class="summary-row total">
+              <span>Tổng cộng:</span>
+              <span class="order-total">170.000đ</span>
+            </div>
+          </div>
+
+          <div class="customer-info">
+            <h4>Thông tin khách hàng:</h4>
+            <div class="info-grid">
+              <div>
+                <p>
+                  <strong>Họ tên:</strong>
+                  <span class="customer-name">Nguyễn Văn A</span>
+                </p>
+                <p>
+                  <strong>Điện thoại:</strong>
+                  <span class="customer-phone">0987654321</span>
+                </p>
+              </div>
+              <div>
+                <p>
+                  <strong>Email:</strong>
+                  <span class="customer-email">example@email.com</span>
+                </p>
+                <p>
+                  <strong>Địa chỉ:</strong>
+                  <span class="customer-address"
+                    >189 Cao Lỗ, P4, Q8, TP HCM</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hiển thị khi không có đơn hàng -->
+      <div class="empty-order" id="empty-order">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Bạn chưa có đơn hàng nào</p>
+        <a href="index.html" class="continue-shopping-btn">Tiếp tục mua sắm</a>
+      </div>
+    </div>
+
+    <!-- FOOTER (Giống các trang khác) -->
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <!-- Nội dung footer giống như các trang khác -->
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Hàm hiển thị tất cả đơn hàng
+      function displayAllOrders() {
+        const ordersList = document.getElementById("orders-list");
+        const emptyOrder = document.getElementById("empty-order");
+        const orderTemplate = document.querySelector(".order-template");
+
+        // Lấy đơn hàng từ localStorage
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+        // Xóa nội dung cũ
+        ordersList.innerHTML = "";
+
+        if (orders.length === 0) {
+          emptyOrder.style.display = "block";
+          return;
+        }
+
+        emptyOrder.style.display = "none";
+
+        // Hiển thị các đơn hàng theo thứ tự mới nhất lên đầu
+        orders.reverse().forEach((order) => {
+          const orderId = `ABC-${new Date(order.date)
+            .getTime()
+            .toString()
+            .slice(-6)}`;
+          const orderDate = new Date(order.date).toLocaleString("vi-VN");
+
+          // Tạo bản sao của template
+          const orderClone = orderTemplate.cloneNode(true);
+          orderClone.style.display = "block";
+
+          // Cập nhật thông tin chung
+          orderClone.querySelector(".order-id").textContent = orderId;
+
+          // Cập nhật trạng thái
+          const statusBtn = orderClone.querySelector(".status-btn");
+          statusBtn.textContent = getStatusText(order.status || "pending");
+          statusBtn.className =
+            "status-btn " + getStatusClass(order.status || "pending");
+
+          // Cập nhật timeline trạng thái
+          updateStatusTimeline(orderClone, order.status || "pending");
+
+          // Cập nhật thông tin vận chuyển
+          orderClone.querySelector(
+            ".info-detail"
+          ).textContent = `Nhà Sách ABC ${getStatusDetail(
+            order.status || "pending"
+          )}`;
+          orderClone.querySelector(".date-time").textContent = orderDate;
+
+          // Cập nhật ngày dự kiến giao hàng (thêm 1 ngày từ ngày đặt)
+          const deliveryDate = new Date(order.date);
+          deliveryDate.setDate(deliveryDate.getDate() + 1);
+          orderClone.querySelector(".delivery-estimate strong").textContent =
+            deliveryDate.toLocaleDateString("vi-VN");
+
+          // Cập nhật sản phẩm
+          const tbody = orderClone.querySelector(".order-items-table tbody");
+          tbody.innerHTML = "";
+
+          let subtotal = 0;
+          order.items.forEach((item) => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${item.name}</td>
+              <td>${item.price.toLocaleString("vi-VN")}đ</td>
+              <td>${item.quantity}</td>
+              <td>${itemTotal.toLocaleString("vi-VN")}đ</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          // Cập nhật tổng tiền
+          const shippingFee = 20000;
+          orderClone.querySelector(
+            ".subtotal"
+          ).textContent = `${subtotal.toLocaleString("vi-VN")}đ`;
+          orderClone.querySelector(
+            ".shipping-fee"
+          ).textContent = `${shippingFee.toLocaleString("vi-VN")}đ`;
+          orderClone.querySelector(".order-total").textContent = `${(
+            subtotal + shippingFee
+          ).toLocaleString("vi-VN")}đ`;
+
+          // Cập nhật thông tin khách hàng
+          orderClone.querySelector(".customer-name").textContent =
+            order.customer.fullname;
+          orderClone.querySelector(".customer-phone").textContent =
+            order.customer.phone;
+          orderClone.querySelector(".customer-email").textContent =
+            order.customer.email;
+          orderClone.querySelector(".customer-address").textContent =
+            order.customer.address;
+
+          // Thêm đơn hàng vào danh sách
+          ordersList.appendChild(orderClone);
+        });
+      }
+
+      function getStatusText(status) {
+        switch (status) {
+          case "pending":
+            return "Đang xác nhận";
+          case "processing":
+            return "Đang xử lý";
+          case "shipping":
+            return "Đang giao hàng";
+          case "completed":
+            return "Hoàn tất";
+          case "cancelled":
+            return "Đã hủy";
+          default:
+            return "Đang xác nhận";
+        }
+      }
+
+      function getStatusClass(status) {
+        switch (status) {
+          case "pending":
+            return "status-pending";
+          case "processing":
+            return "status-processing";
+          case "shipping":
+            return "status-shipping";
+          case "completed":
+            return "status-completed";
+          case "cancelled":
+            return "status-cancelled";
+          default:
+            return "status-pending";
+        }
+      }
+
+      function getStatusDetail(status) {
+        switch (status) {
+          case "pending":
+            return "đang xác nhận đơn hàng";
+          case "processing":
+            return "đang xử lý đơn hàng";
+          case "shipping":
+            return "đang giao hàng";
+          case "completed":
+            return "đã hoàn tất đơn hàng";
+          case "cancelled":
+            return "đã hủy đơn hàng";
+          default:
+            return "đang xác nhận đơn hàng";
+        }
+      }
+
+      function updateStatusTimeline(orderElement, status) {
+        const statusItems = orderElement.querySelectorAll(".status-item");
+        statusItems.forEach((item) => item.classList.remove("active"));
+
+        switch (status) {
+          case "pending":
+            statusItems[0].classList.add("active");
+            break;
+          case "processing":
+            statusItems[0].classList.add("active");
+            statusItems[1].classList.add("active");
+            break;
+          case "shipping":
+            statusItems[0].classList.add("active");
+            statusItems[1].classList.add("active");
+            statusItems[2].classList.add("active");
+            break;
+          case "completed":
+            statusItems.forEach((item) => item.classList.add("active"));
+            break;
+          case "cancelled":
+            // Không active bất kỳ bước nào
+            break;
+          default:
+            statusItems[0].classList.add("active");
+        }
+      }
+
+      // Tải đơn hàng khi trang được mở
+      document.addEventListener("DOMContentLoaded", displayAllOrders);
+    </script>
+  </body>
+</html>

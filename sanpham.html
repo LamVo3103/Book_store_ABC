@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm | Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <style>
+    .product-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.product-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.product-title {
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.product-price {
+  color: #e53935;
+  margin-bottom: 10px;
+}
+
+.add-to-cart-button {
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  </style>
+  <body>
+    <!-- HEADER (Giống các trang khác) -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Trang chủ</a> &gt;
+        <a href="tatcasanpham.html">Sản phẩm</a> &gt;
+        <span>Chi tiết sản phẩm</span>
+      </div>
+
+      
+
+      <!-- Product Detail Section -->
+      <main class="product-detail">
+        <div class="product-images">
+          <img id="mainImage" src="img/dac-nhan-tam.jpg" alt="Đắc Nhân Tâm" />
+          <div class="thumbnail-container">
+            <img
+              src="img/dac-nhan-tam.jpg"
+              onclick="switchImage(this)"
+              class="thumbnail active"
+            />
+            <img
+              src="img/dac-nhan-tam-back.jpg"
+              onclick="switchImage(this)"
+              class="thumbnail"
+            />
+            <img
+              src="img/dac-nhan-tam-side.jpg"
+              onclick="switchImage(this)"
+              class="thumbnail"
+            />
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h1>Đắc Nhân Tâm</h1>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>(128 đánh giá)</span>
+          </div>
+
+          <div class="price">Giá: 75.000₫</div>
+
+          <div class="description">
+            <p>
+              Cuốn sách "Đắc Nhân Tâm" của Dale Carnegie là một trong những cuốn
+              sách nổi tiếng nhất mọi thời đại về nghệ thuật giao tiếp và ứng xử
+              trong cuộc sống.
+            </p>
+            
+          </div>
+
+          <div class="quantity-control">
+            <span>Số lượng:</span>
+            <button onclick="decrease()">-</button>
+            <input type="number" id="quantity" value="1" min="1" readonly />
+            <button onclick="increase()">+</button>
+          </div>
+
+          <div class="action-buttons">
+            <button class="add-to-cart-button" onclick="addToCartFromDetail()">
+              <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- Sidebar Right (Giỏ hàng) -->
+      <aside class="sidebar-right">
+        <div class="cart-summary-box">
+          <h2><i class="fas fa-shopping-cart"></i> GIỎ HÀNG</h2>
+          <div class="cart-info">
+            <div class="cart-summary">
+              <span>Số lượng:</span>
+              <span class="cart-count">0</span> sản phẩm
+            </div>
+            <div class="cart-summary">
+              <span>Tổng tiền:</span>
+              <span class="cart-total">0</span>
+            </div>
+            <a href="giohang.html" class="view-cart-button">Xem giỏ hàng</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+    </div>
+
+    <section class="product-section">
+      <h2>Các sản phẩm liên quan</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <a href="sanpham.html?product=7-thoi-quen-hieu-qua" class="product-link">
+            <img src="img/7-thoi-quen-hieu-qua.jpg" alt="7 Thói Quen Hiệu Quả" />
+          </a>
+          <p class="product-title">7 Thói Quen Hiệu Quả</p>
+          <p class="product-price">105.000đ</p>
+          <button class="add-to-cart-button">Thêm vào giỏ</button>
+        </div>
+    
+        <div class="product-card">
+          <a href="sanpham.html?product=lam-chu-tu-duy-thay-doi-van-menhmenh" class="product-link">
+            <img src="img/lam-chu-tu-duy-thay-doi-van-menh.jpg" alt="Làm Chủ Tư Duy Thay Đổi Vận Mệnh" />
+          </a>
+          <p class="product-title">Làm Chủ Tư Duy Thay Đổi Vận Mệnh</p>
+          <p class="product-price">115.000đ</p>
+          <button class="add-to-cart-button">Thêm vào giỏ</button>
+        </div>
+    
+        <div class="product-card">
+          <a href="sanpham.html?product=harrypotter" class="product-link">
+            <img src="img/harrypotter.jpg" alt="Harry Potter" />
+          </a>
+          <p class="product-title">Harry Potter (Tập 1)</p>
+          <p class="product-price">120.000đ</p>
+          <button class="add-to-cart-button">Thêm vào giỏ</button>
+        </div>
+    
+        <div class="product-card">
+          <a href="sanpham.html?product=hoa-hoc-lop-11" class="product-link">
+            <img src="img/hoa-hoc-lop-11.jpg" alt="Hóa Học Lớp 11" />
+          </a>
+          <p class="product-title">Hóa Học Lớp 11</p>
+          <p class="product-price">50.000đ</p>
+          <button class="add-to-cart-button">Thêm vào giỏ</button>
+        </div>
+      </div>
+    </section>
+    <!-- Footer (Giống các trang khác) -->
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

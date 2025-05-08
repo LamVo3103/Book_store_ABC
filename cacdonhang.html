@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tài Khoản - Nhà Sách ABC</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .account-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 20px;
+        display: flex;
+        gap: 30px;
+      }
+
+      .account-sidebar {
+        width: 250px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .account-content {
+        flex: 1;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .account-menu h3 {
+        color: #1976d2;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .account-menu ul {
+        list-style: none;
+      }
+
+      .account-menu li {
+        margin-bottom: 10px;
+      }
+
+      .account-menu a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s;
+      }
+
+      .account-menu a:hover,
+      .account-menu a.active {
+        background-color: #e3f2fd;
+        color: #0d47a1;
+      }
+
+      .account-menu a i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .orders-title {
+        color: #1976d2;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e3f2fd;
+      }
+
+      .order-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .order-header {
+        background-color: #f5f5f5;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .order-id {
+        font-weight: bold;
+        color: #1976d2;
+      }
+
+      .order-date {
+        color: #666;
+      }
+
+      .order-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      .status-completed {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .status-cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .order-body {
+        padding: 15px;
+      }
+
+      .order-item {
+        display: flex;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px dashed #eee;
+      }
+
+      .order-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .order-item-img {
+        width: 80px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 15px;
+      }
+
+      .order-item-info {
+        flex: 1;
+      }
+
+      .order-item-name {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .order-item-price {
+        color: #1976d2;
+        font-weight: bold;
+      }
+
+      .order-item-quantity {
+        color: #666;
+      }
+
+      .order-summary {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 2px solid #eee;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .summary-total {
+        font-weight: bold;
+        font-size: 18px;
+        color: #0d47a1;
+      }
+
+      .order-actions {
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .order-btn {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
+
+      .cancel-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .cancel-btn:hover {
+        background-color: #c82333;
+      }
+
+      .view-btn {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .view-btn:hover {
+        background-color: #5a6268;
+      }
+
+      .empty-orders {
+        text-align: center;
+        padding: 50px;
+        color: #666;
+      }
+
+      .empty-orders i {
+        font-size: 50px;
+        color: #90caf9;
+        margin-bottom: 20px;
+      }
+
+      .empty-orders p {
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .shop-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #1976d2;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .shop-btn:hover {
+        background-color: #0d47a1;
+      }
+
+      @media (max-width: 768px) {
+        .account-container {
+          flex-direction: column;
+        }
+
+        .account-sidebar {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .order-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .order-actions {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER (Giống các trang khác) -->
+    <header>
+      <a href="index.html">
+        <div class="logo">
+          <h1>Nhà Sách ABC</h1>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html" style="color: #fbbf24">Trang Chủ</a></li>
+          <li><a href="tatcasanpham.html">Sản Phẩm</a></li>
+          <li><a href="#footer">Liên Hệ</a></li>
+          <li>
+            <a href="cacdonhang.html"> Đơn hàng</a>
+          </li>
+          <li><a href="theodoidonhang.html">Theo dõi đơn hàng</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bỏ search-cart và user-actions vào 1 container chung -->
+      <div class="header-right">
+        <div class="search-cart">
+          <input type="text" placeholder="Tìm kiếm sách..." />
+          <button>Tìm</button>
+          <a href="#" class="cart">🛒</a>
+        </div>
+
+        <div class="user-actions">
+          <div class="auth-dropdown">
+            <button class="auth-btn" id="userMenuBtn">
+              <i class="fas fa-user"></i> Tài khoản
+            </button>
+            <div class="auth-dropdown-content">
+              <a href="account.html"><i class="fas fa-user"></i> Tài khoản</a>
+              <a href="giohang.html"
+                ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+              >
+              <a href="#" id="logoutLink"
+                ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung tài khoản -->
+    <div class="account-container">
+      <div class="account-sidebar">
+        <div class="account-menu">
+          <h3>Tài khoản của tôi</h3>
+          <ul>
+            <li>
+              <a href="" class="active"
+                ><i class="fas fa-user"></i> Thông tin đơn hàng</a
+              >
+            </li>
+            <li>
+              <a href="account.html">
+                <i class="fas fa-clipboard-list"></i> Thông tin cá nhân</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="account-content">
+        <h2 class="orders-title">
+          <i class="fas fa-clipboard-list"></i> Đơn hàng của tôi
+        </h2>
+
+        <div id="orders-list">
+          <div class="empty-orders">
+            <i class="fas fa-shopping-bag"></i>
+            <p>Bạn chưa có đơn hàng nào</p>
+            <a href="index.html" class="shop-btn">Mua sắm ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-column-left">
+          <h1>Nhà Sách ABC</h1>
+          <p>189 Cao Lỗ Phường 4 Quận 8 TP HCM</p>
+          <p>
+            Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ
+            trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+            Thống Fahasa trên toàn quốc.
+          </p>
+          <div class="social-logo">
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/footer/Facebook-on.png"
+            />
+            <img
+              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images//footer/Youtube-on.png"
+            />
+          </div>
+        </div>
+        <!-- Dịch vụ -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='dichvu.html'">DỊCH VỤ</h3>
+          <div class="mobile-hide">
+            <p>Điều khoản sử dụng</p>
+            <p>Chính sách bảo mật thông tin cá nhân</p>
+            <p>Chính sách bảo mật thanh toán</p>
+            <p>Giới thiệu</p>
+            <p>Hệ thống trung tâm - nhà sách</p>
+          </div>
+        </div>
+
+        <!-- Chính sách -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='chinhsach.html'">HỖ TRỢ</h3>
+          <div class="mobile-hide">
+            <p>Chính sách đổi - trả - hoàn tiền</p>
+            <p>Chính sách bảo hành - bồi hoàn</p>
+            <p>Chính sách vận chuyển</p>
+            <p>Chính sách khách sỉ</p>
+          </div>
+        </div>
+
+        <!-- Tài khoản -->
+        <div class="footer-column-right mobile-collapsible">
+          <h3 onclick="location.href='login.html'">TÀI KHOẢN CỦA TÔI</h3>
+          <div class="mobile-hide">
+            <p>Đăng nhập / Tạo mới tài khoản</p>
+            <p>Thay đổi địa chỉ khách hàng</p>
+            <p>Chi tiết tài khoản</p>
+            <p>Giỏ hàng</p>
+          </div>
+        </div>
+
+        <div class="footer-column-right">
+          <h3>LIÊN HỆ</h3>
+          <i class="fas fa-map-marker-alt fa-lg"></i>
+          <span>189 Cao Lỗ P4, Q8, TP HCM</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-envelope fa-lg"></i>
+          <span>cskh@abc.com.vn</span>
+        </div>
+        <div class="footer-column-right">
+          <h4>&nbsp;</h4>
+          <i class="fas fa-phone fa-lg"></i>
+          <span>0987654321</span>
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn0.fahasa.com/media/wysiwyg/Logo-NCC/Logo_ninjavan.png"
+            width="150px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/momopay.png"
+            height="50px"
+          />
+        </div>
+        <div class="logo">
+          <img
+            src="https://cdn1.fahasa.com/media//wysiwyg/Logo-NCC/logo_zalopay_2.png"
+            height="40px"
+          />
+        </div>
+
+        <div class="credits">
+          <p>&copy; Nhà sách ABC</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Lấy đơn hàng từ localStorage
+      function loadOrders() {
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const ordersList = document.getElementById("orders-list");
+
+        if (orders.length === 0) {
+          ordersList.innerHTML = `
+                    <div class="empty-orders">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Bạn chưa có đơn hàng nào</p>
+                        <a href="index.html" class="shop-btn">Mua sắm ngay</a>
+                    </div>
+                `;
+          return;
+        }
+
+        ordersList.innerHTML = "";
+
+        // Hiển thị các đơn hàng theo thứ tự mới nhất lên đầu
+        orders.reverse().forEach((order, index) => {
+          const orderId = `ABC-${new Date(order.date)
+            .getTime()
+            .toString()
+            .slice(-6)}`;
+          const orderDate = new Date(order.date).toLocaleString("vi-VN");
+          let statusClass = "status-pending";
+          let statusText = "Đang xử lý";
+
+          if (order.status === "completed") {
+            statusClass = "status-completed";
+            statusText = "Đã hoàn thành";
+          } else if (order.status === "cancelled") {
+            statusClass = "status-cancelled";
+            statusText = "Đã hủy";
+          }
+
+          let orderHTML = `
+                    <div class="order-card" data-order-id="${orderId}">
+                        <div class="order-header">
+                            <div>
+                                <span class="order-id">Mã đơn hàng: ${orderId}</span>
+                                <span class="order-date"> - ${orderDate}</span>
+                            </div>
+                            <span class="order-status ${statusClass}">${statusText}</span>
+                        </div>
+                        <div class="order-body">
+                `;
+
+          let subtotal = 0;
+          order.items.forEach((item) => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            orderHTML += `
+                        <div class="order-item">
+                            <img src="${item.image}" alt="${
+              item.name
+            }" class="order-item-img">
+                            <div class="order-item-info">
+                                <div class="order-item-name">${item.name}</div>
+                                <div class="order-item-price">${item.price.toLocaleString(
+                                  "vi-VN"
+                                )}₫</div>
+                                <div class="order-item-quantity">Số lượng: ${
+                                  item.quantity
+                                }</div>
+                            </div>
+                        </div>
+                    `;
+          });
+
+          const shippingFee = 20000;
+          const total = subtotal + shippingFee;
+
+          orderHTML += `
+                            <div class="order-summary">
+                                <div class="summary-row">
+                                    <span>Tạm tính:</span>
+                                    <span>${subtotal.toLocaleString(
+                                      "vi-VN"
+                                    )}₫</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Phí vận chuyển:</span>
+                                    <span>${shippingFee.toLocaleString(
+                                      "vi-VN"
+                                    )}₫</span>
+                                </div>
+                                <div class="summary-row summary-total">
+                                    <span>Tổng cộng:</span>
+                                    <span>${total.toLocaleString(
+                                      "vi-VN"
+                                    )}₫</span>
+                                </div>
+                            </div>
+                `;
+
+          // Chỉ hiển thị nút hủy nếu đơn hàng chưa hoàn thành hoặc hủy
+          if (!order.status || order.status === "pending") {
+            orderHTML += `
+                            <div class="order-actions">
+                                <button class="order-btn view-btn">Xem chi tiết</button>
+                                <button class="order-btn cancel-btn" onclick="cancelOrder('${orderId}')">Hủy đơn hàng</button>
+                            </div>
+                    `;
+          } else {
+            orderHTML += `
+                            <div class="order-actions">
+                                <button class="order-btn view-btn">Xem chi tiết</button>
+                            </div>
+                    `;
+          }
+
+          orderHTML += `
+                        </div>
+                    </div>
+                `;
+
+          ordersList.innerHTML += orderHTML;
+        });
+      }
+
+      // Hàm hủy đơn hàng
+      function cancelOrder(orderId) {
+        if (confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")) {
+          const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+          // Tìm đơn hàng cần hủy
+          const orderIndex = orders.findIndex((order) => {
+            const id = `ABC-${new Date(order.date)
+              .getTime()
+              .toString()
+              .slice(-6)}`;
+            return id === orderId;
+          });
+
+          if (orderIndex !== -1) {
+            // Cập nhật trạng thái đơn hàng
+            orders[orderIndex].status = "cancelled";
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            // Hiển thị thông báo
+            alert("Đơn hàng đã được hủy thành công");
+
+            // Tải lại danh sách đơn hàng
+            loadOrders();
+          }
+        }
+      }
+
+      // Tải đơn hàng khi trang được mở
+      document.addEventListener("DOMContentLoaded", loadOrders);
+    </script>
+  </body>
+</html>
